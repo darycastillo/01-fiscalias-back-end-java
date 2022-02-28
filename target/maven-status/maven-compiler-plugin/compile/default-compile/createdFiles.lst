@@ -1,0 +1,6 @@
+com/prueba/fiscalias/controllers/FiscaliasController.class
+com/prueba/fiscalias/controllers/JakartaEE8Resource.class
+com/prueba/fiscalias/models/FiscaliaModel.class
+com/prueba/fiscalias/services/FiscaliaService.class
+com/prueba/fiscalias/database/SqlServer.class
+com/prueba/fiscalias/JakartaRestConfiguration.class

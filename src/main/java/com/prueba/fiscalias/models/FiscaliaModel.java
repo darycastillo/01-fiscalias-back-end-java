@@ -12,6 +12,20 @@ package com.prueba.fiscalias.models;
 public class FiscaliaModel {
 
     /**
+     * @return the Telefono
+     */
+    public String getTelefono() {
+        return Telefono;
+    }
+
+    /**
+     * @param Telefono the Telefono to set
+     */
+    public void setTelefono(String Telefono) {
+        this.Telefono = Telefono;
+    }
+
+    /**
      * @return the id
      */
     public int getId() {
@@ -23,6 +37,34 @@ public class FiscaliaModel {
      */
     public void setId(int id) {
         this.id = id;
+    }
+
+    /**
+     * @return the Departamento_id
+     */
+    public int getDepartamento_id() {
+        return Departamento_id;
+    }
+
+    /**
+     * @param Departamento_id the Departamento_id to set
+     */
+    public void setDepartamento_id(int Departamento_id) {
+        this.Departamento_id = Departamento_id;
+    }
+
+    /**
+     * @return the Municipio_id
+     */
+    public int getMunicipio_id() {
+        return Municipio_id;
+    }
+
+    /**
+     * @param Municipio_id the Municipio_id to set
+     */
+    public void setMunicipio_id(int Municipio_id) {
+        this.Municipio_id = Municipio_id;
     }
 
     /**
@@ -39,7 +81,24 @@ public class FiscaliaModel {
         this.Nombre = Nombre;
     }
 
+    /**
+     * @return the Descripcion
+     */
+    public String getDescripcion() {
+        return Descripcion;
+    }
+
+    /**
+     * @param Descripcion the Descripcion to set
+     */
+    public void setDescripcion(String Descripcion) {
+        this.Descripcion = Descripcion;
+    }
+
     private int id;
-    private String Nombre;
-  
+    private int Departamento_id;
+    private int Municipio_id;
+    private String Nombre = "valor";
+    private String Descripcion = "valor";
+    private String Telefono = "valor";
 }

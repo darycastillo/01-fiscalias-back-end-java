@@ -18,13 +18,13 @@ import java.util.logging.Logger;
 public class SqlServer {
 
     public Connection connection;
-    private final String server = "jdbc:sqlserver://localhost;databaseName=Fiscalias_MP";
+    private final String server = "jdbc:sqlserver://localhost:1433;databaseName=Fiscalias_MP";
     static private final String user = "sa";
     static private final String password = "Test12345.";
 
     public void open() throws ClassNotFoundException {
         try {
-//            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = (Connection) DriverManager.getConnection(server, user, password);
         } catch (SQLException ex) {
             Logger.getLogger(SqlServer.class.getName()).log(Level.SEVERE, null, ex);

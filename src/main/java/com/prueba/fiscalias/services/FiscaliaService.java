@@ -28,15 +28,15 @@ public class FiscaliaService {
 
         sqlServer.open();
 
-        try (Statement stmt = sqlServer.connection.createStatement();) {
+        try ( Statement stmt = sqlServer.connection.createStatement();) {
 
             ResultSet rs = stmt.executeQuery("{call SP_SELECT_FISCALIA}");
             while (rs.next()) {
 
                 FiscaliaModel fiscaliaModel = new FiscaliaModel();
 
-                fiscaliaModel.setId(rs.getInt("FISCALIAID"));
-                fiscaliaModel.setNombre(rs.getString("FISCALIANOMBRE"));
+                fiscaliaModel.setId(rs.getInt("id"));
+                fiscaliaModel.setNombre(rs.getString("Nombre"));
 
                 Lista.add(fiscaliaModel);
             }
@@ -47,89 +47,62 @@ public class FiscaliaService {
         return Lista;
     }
 
-//   
-//    public ArrayList getDepartamentos() throws SQLException{
-//       
-//       ArrayList<DEPARTAMENTO> Lista=new ArrayList<DEPARTAMENTO>();
-//       
-//       con.AbrirConexion();
-//     
-//       try(Statement stmt = con.conexion. createStatement();) {  
-//
-//        ResultSet rs = stmt.executeQuery("{call SP_SELECT_DEPARTAMENTOS}");  
-//        while (rs.next()) { 
-//            
-//           DEPARTAMENTO dep=new DEPARTAMENTO();
-//            
-//           dep.setDEPARTAMENTOID(rs.getInt("DEPARTAMENTOID"));
-//           dep.setDEPARTAMENTONOMBRE(rs.getString("DEPARTAMENTONOMBRE"));
-//            
-//            Lista.add(dep);
-//        }
-//      
-//    }  
-//       
-//      con.CerrarConexion();
-//      
-//      return Lista;
-//   }
-//   
-//   
-//   
-//    public ArrayList getMunicipios(int depto) throws SQLException{
-//       
-//       ArrayList<MUNICIPIO> Lista=new ArrayList<MUNICIPIO>();
-//       
-//       con.AbrirConexion();
-//     
-//       try(CallableStatement cstmt = con.conexion.prepareCall("{call SP_SELECT_MUNICIPIOS(?)}"); ) {  
-//            
-//         cstmt.setInt(1,depto);  
-//
-//         ResultSet rs= cstmt.executeQuery();
-//  
-//         while (rs.next()) { 
-//             
-//            MUNICIPIO mun=new MUNICIPIO();
-//            
-//            mun.setDEPARTAMENTOID(rs.getInt("DEPARTAMENTOID"));
-//            mun.setMUNICIPIOID(rs.getInt("MUNICIPIOID"));
-//            mun.setMUNICIPIONOMBRE(rs.getString("MUNICIPIONOMBRE"));
-//          
-//            Lista.add(mun);
-//        }
-//    } 
-//       
-//       
-//      con.CerrarConexion();
-//      
-//      return Lista;
-//   }
-//   
-//   
-//
-//   
-//public void createFiscalia(FISCALIA fiscalia) throws SQLException{
-//              
-//       con.AbrirConexion();
-//     
-//       try(PreparedStatement pstmt = con.conexion.prepareStatement("{call SP_INSERT_FISCALIA(?,?,?,?,?)}"); ) {  
-//
-//        pstmt.setString(1, fiscalia.getFISCALIANOMBRE());  
-//        pstmt.setInt(2, fiscalia.getDEPARTAMENTOID());  
-//        pstmt.setInt(3, fiscalia.getMUNICIPIOID());  
-//        pstmt.setString(4,fiscalia.getFISCALIADIRCOMPLEMENTO()); 
-//        pstmt.setString(5,fiscalia.getTELEFONO()); 
-//        
-//        ResultSet rs = pstmt.executeQuery(); 
-//
-//      con.CerrarConexion();
-//      
-//   }
-//   
-// }
-//    
-//    
+    public void create(FiscaliaModel fiscaliaModel) throws SQLException, ClassNotFoundException {
+
+        sqlServer.open();
+
+        try ( PreparedStatement pstmt = sqlServer.connection.prepareStatement("{call SP_INSERT_FISCALIA(?,?,?,?,?)}");) {
+
+            pstmt.setString(1, fiscaliaModel.getNombre());
+            pstmt.setInt(2, fiscaliaModel.getDepartamento_id());
+            pstmt.setInt(3, fiscaliaModel.getMunicipio_id());
+            pstmt.setString(4, fiscaliaModel.getDescripcion());
+            pstmt.setString(5, fiscaliaModel.getTelefono());
+
+            pstmt.execute();
+
+            sqlServer.close();
+
+        }
+
+    }
+
+    public void update(FiscaliaModel fiscaliaModel) throws SQLException, ClassNotFoundException {
+
+        sqlServer.open();
+
+        try ( PreparedStatement pstmt = sqlServer.connection.prepareStatement("{call SP_UPDATE_FISCALIA(?,?,?,?,?,?)}");) {
+
+            pstmt.setInt(1, fiscaliaModel.getId());
+            pstmt.setString(2, fiscaliaModel.getNombre());
+            pstmt.setInt(3, fiscaliaModel.getDepartamento_id());
+            pstmt.setInt(4, fiscaliaModel.getMunicipio_id());
+            pstmt.setString(5, fiscaliaModel.getDescripcion());
+            pstmt.setString(6, fiscaliaModel.getTelefono());
+
+            pstmt.execute();
+
+            sqlServer.close();
+
+        }
+
+    }
+
+    public void delete(int fiscaliaID) throws SQLException, ClassNotFoundException {
+
+        sqlServer.open();
+
+        try ( CallableStatement cstmt = sqlServer.connection.prepareCall("{call SP_DELETE_FISCALIA (?)}");) {
+
+            cstmt.setInt(1, fiscaliaID);
+            cstmt.execute();
+
+        }
+
+        sqlServer.close();
+
+    }
+
 //public void createTelefono(SP_TELEFONO telefono) throws SQLException{
 //              
 //       con.AbrirConexion();
@@ -148,31 +121,6 @@ public class FiscaliaService {
 //   
 // }
 //   
-//   
-//    public void updateFiscalia(FISCALIA fiscalia) throws SQLException{
-//              
-//       con.AbrirConexion();
-//     
-//       try(PreparedStatement pstmt = con.conexion.prepareStatement("{call SP_UPDATE_FISCALIA(?,?,?,?,?)}"); ) {  
-//
-//        pstmt.setInt(1,fiscalia.getFISCALIAID());
-//        pstmt.setString(2, fiscalia.getFISCALIANOMBRE());  
-//        pstmt.setInt(3, fiscalia.getDEPARTAMENTOID());  
-//        pstmt.setInt(4, fiscalia.getMUNICIPIOID());  
-//        pstmt.setString(5,fiscalia.getFISCALIADIRCOMPLEMENTO()); 
-//        
-//        ResultSet rs = pstmt.executeQuery(); 
-//
-//      con.CerrarConexion();
-//      
-//      //se actualiza el telefono
-//      SP_TELEFONO tl=new SP_TELEFONO();
-//      tl.setFISCALIAID(fiscalia.getFISCALIAID());
-//      tl.setTELEFONONO(fiscalia.getTELEFONO());
-//      this.updateTelefono(tl);
-//   }
-//   
-// }
 //   
 //    public void updateTelefono(SP_TELEFONO telefono) throws SQLException{
 //              
@@ -230,18 +178,4 @@ public class FiscaliaService {
 //
 //
 //  
-//    public void deleteFiscalia(int fiscaliaID) throws SQLException{
-//              
-//       con.AbrirConexion();
-//     
-//       try(CallableStatement cstmt = con.conexion.prepareCall("{call SP_DELETE_FISCALIA (?)}"); ) {  
-//           
-//        cstmt.setInt(1, fiscaliaID);  
-//        cstmt.execute();  
-// 
-//        }  
-//       
-//      con.CerrarConexion();
-//      
-//   }
 }

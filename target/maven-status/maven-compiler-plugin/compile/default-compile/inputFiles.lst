@@ -4,6 +4,7 @@
 /Users/darycastillo/NetBeansProjects/Fiscalias/src/main/java/com/prueba/fiscalias/controllers/exceptions/PreexistingEntityException.java
 /Users/darycastillo/NetBeansProjects/Fiscalias/src/main/java/com/prueba/fiscalias/entities/Municipios.java
 /Users/darycastillo/NetBeansProjects/Fiscalias/src/main/java/com/prueba/fiscalias/controllers/MunicipiosJpaController.java
+/Users/darycastillo/NetBeansProjects/Fiscalias/src/main/java/com/prueba/fiscalias/rest/CrossOriginResourceSharingFilter.java
 /Users/darycastillo/NetBeansProjects/Fiscalias/src/main/java/com/prueba/fiscalias/models/FiscaliaModel.java
 /Users/darycastillo/NetBeansProjects/Fiscalias/src/main/java/com/prueba/fiscalias/dao/DepartamentosDAO.java
 /Users/darycastillo/NetBeansProjects/Fiscalias/src/main/java/com/prueba/fiscalias/dao/FiscaliasDAO.java

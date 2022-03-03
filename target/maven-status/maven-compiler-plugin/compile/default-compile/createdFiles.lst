@@ -12,4 +12,5 @@ com/prueba/fiscalias/dao/DepartamentosDAO.class
 com/prueba/fiscalias/rest/FiscaliasResource.class
 com/prueba/fiscalias/entities/Municipios.class
 com/prueba/fiscalias/models/FiscaliaModel.class
+com/prueba/fiscalias/rest/CrossOriginResourceSharingFilter.class
 com/prueba/fiscalias/rest/FiscaliasRestConfiguration.class
